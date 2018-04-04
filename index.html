@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet" type="text/css">
+  <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet" type="text/css"></link>
+  <link href="styles.css" rel="stylesheet" type="text/css">
+  <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+</head>
+<body>
+  <div id="app" ref="app">
+    <transition name="bg-fade" mode="out-in">
+        <canvas id="bg1" ref="bg1" v-show="bg1"></canvas>
+    </transition>
+
+    <transition name="bg-fade" mode="out-in">
+        <canvas id="bg2" ref="bg2" v-show="!bg1"></canvas>
+    </transition>
+
+    <v-app>
+        <v-content>
+            <v-container fluid>
+                <v-btn color="info" @click="updateBackground">Switch</v-btn>
+            </v-container>
+        </v-content>
+
+    </v-app>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/trianglify/1.2.0/trianglify.min.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        bg1: true
+      },
+
+      methods: {
+          updateBackground() {
+            let height = window.innerHeight
+            let width = window.innerWidth
+
+            console.log(window.innerHeight)
+
+            let pattern = Trianglify({
+                width: width,
+                height: height,
+                cell_size: 150
+            })
+
+            if (this.bg1) {
+                pattern.canvas(this.$refs.bg2)
+            } else {
+                pattern.canvas(this.$refs.bg1)
+            }
+
+            this.bg1 = !this.bg1
+          }
+      }
+    })
+  </script>
+</body>
+</html>

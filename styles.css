@@ -1,0 +1,15 @@
+#bg1 {
+    position: absolute;
+}
+
+#bg2 {
+    position: absolute;
+}
+
+.bg-fade-enter-active, .bg-fade-leave-active {
+    transition: opacity 3s ease;
+}
+
+.bg-fade-enter, .bg-fade-leave-to {
+    opacity: 0;
+}
