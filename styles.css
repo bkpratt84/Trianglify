@@ -13,3 +13,8 @@
 .bg-fade-enter, .bg-fade-leave-to {
     opacity: 0;
 }
+
+#me {
+    background-color: white;
+    opacity: .5;
+}
